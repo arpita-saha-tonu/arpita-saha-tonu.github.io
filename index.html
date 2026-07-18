@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arpita Saha — Portfolio</title>
+<style>
+  :root {
+    --bg: #FAF9F6;
+    --bg-raised: #FFFFFF;
+    --bg-sunken: #F1EFE9;
+    --ink: #1D2321;
+    --ink-soft: #4B5451;
+    --ink-faint: #7C8683;
+    --line: #DDD9D0;
+    --accent: #2F5D5A;
+    --accent-soft: #E4EDEB;
+    --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --nav-h: 64px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14181A;
+      --bg-raised: #1B2022;
+      --bg-sunken: #101314;
+      --ink: #E9EBE9;
+      --ink-soft: #AEB6B2;
+      --ink-faint: #757F7B;
+      --line: #2C3335;
+      --accent: #7FBBB0;
+      --accent-soft: #1F2C2A;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-h);
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Top Navigation ---------- */
+
+  .nav-toggle { display: none; }
+
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    padding: 6px 2px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .hamburger {
+    display: none;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .hamburger:hover { background: var(--accent-soft); }
+
+  .hamburger svg { width: 20px; height: 20px; stroke: var(--ink); }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: 72px 0 56px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .portrait {
+    flex: 0 0 auto;
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-raised);
+  }
+
+  .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 2.4rem;
+    letter-spacing: 0.01em;
+    margin: 0 0 8px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  .hero .role-line {
+    font-size: 1rem;
+    color: var(--accent);
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  .contact-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .contact-line a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .contact-line a:hover,
+  .contact-line a:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ---------- Sections ---------- */
+
+  section {
+    padding: 56px 0;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: var(--nav-h);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 0 0 28px;
+  }
+
+  .section-num {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .section-title {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .lede {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+
+  /* ---------- Education / entries ---------- */
+
+  .entry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 16px;
+    align-items: baseline;
+  }
+
+  .entry + .entry {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+
+  .entry-title {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    color: var(--ink);
+    grid-column: 1;
+  }
+
+  .entry-period {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    grid-column: 2;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .entry-sub {
+    grid-column: 1 / -1;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  .entry-detail {
+    grid-column: 1 / -1;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    margin-top: 2px;
+  }
+
+  /* ---------- Experience ---------- */
+
+  .exp-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 28px 30px;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--ink);
+  }
+
+  .exp-org { color: var(--accent); }
+
+  .exp-period {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .exp-list {
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 11px;
+  }
+
+  .exp-list li {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .exp-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .exp-list strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Skills ---------- */
+
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .skill-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+
+  .skill-card h3 {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+
+  .skill-card p {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Certifications ---------- */
+
+  .cert-group { margin-bottom: 30px; }
+  .cert-group:last-child { margin-bottom: 0; }
+
+  .cert-group h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 0.98rem;
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+
+  .cert-group ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  .cert-group li {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  .cert-award { display: grid; gap: 2px; }
+  .cert-award .cert-name { color: var(--ink); }
+  .cert-award .cert-meta { font-size: 0.78rem; color: var(--ink-faint); }
+
+  /* ---------- Languages ---------- */
+
+  .lang-row { display: flex; gap: 44px; flex-wrap: wrap; }
+  .lang-item .lang-name { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); }
+  .lang-item .lang-level { font-size: 0.82rem; color: var(--ink-faint); }
+
+  /* ---------- Contact / References ---------- */
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .ref-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 22px;
+  }
+
+  .ref-card .ref-name { font-family: var(--serif); font-size: 1.02rem; color: var(--ink); margin: 0 0 3px; }
+  .ref-card .ref-title { font-size: 0.82rem; color: var(--accent); margin: 0 0 10px; }
+
+  .ref-card dl {
+    margin: 0;
+    display: grid;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+
+  .ref-card dl a { text-decoration: none; border-bottom: 1px solid var(--line); }
+
+  .cta-card {
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 28px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cta-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg-raised);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .cta-button:hover { opacity: 0.9; }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0 40px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 760px) {
+    .nav-links {
+      position: absolute;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      flex-direction: column;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 14px 28px;
+      border-bottom: 1px solid var(--line);
+      border-left: 2px solid transparent;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      border-left-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .hamburger { display: flex; }
+
+    .nav-toggle:checked ~ .nav-links {
+      max-height: 420px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .wrap, .nav-inner { padding-left: 20px; padding-right: 20px; }
+    .hero { flex-direction: column; align-items: flex-start; gap: 22px; padding: 48px 0 40px; }
+    .portrait { width: 108px; height: 108px; }
+    .hero h1 { font-size: 1.85rem; }
+    .skill-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .entry { grid-template-columns: 1fr; }
+    .entry-period { grid-column: 1; }
+    .exp-card { padding: 22px 20px; }
+    .cta-card { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 420px) {
+    .hero h1 { font-size: 1.55rem; }
+    .exp-header { flex-direction: column; gap: 4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  a:focus-visible, *:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">Arpita Saha</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <label class="hamburger" for="nav-toggle" aria-label="Toggle navigation menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </label>
+  </div>
+</nav>
+
+<div id="top"></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="portrait">
+      <img src="arpita.jpeg" alt="Portrait of Arpita Saha" />
+    </div>
+    <div>
+      <h1>Arpita Saha</h1>
+      <p class="role-line">Emerging Researcher — Molecular Biology, Bioinformatics &amp; Pharmacology</p>
+      <div class="contact-line">
+        <span>Dhanmondi, Dhaka</span>
+        <a href="mailto:arpitasahatonu@gmail.com">arpitasahatonu@gmail.com</a>
+        <a href="https://linkedin.com/in/arpita-saha-b77295323" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="wrap">
+
+  <section id="about">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About</h2>
+    </div>
+    <p class="lede">Researcher specializing in molecular biology, bioinformatics, and pharmacology, with a foundation in <em>in silico</em> analysis. Research interests center on population-level genetic variation, single-cell genomics, and the design of novel therapeutic agents.</p>
+  </section>
+
+  <section id="education">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Education</h2>
+    </div>
+
+    <div class="entry">
+      <span class="entry-title">M.Sc. in Microbiology (Professional)</span>
+      <span class="entry-period">Ongoing</span>
+      <span class="entry-sub">Jagannath University, Dhaka, Bangladesh</span>
+    </div>
+
+    <div class="entry">
+      <span class="entry-title">B.Sc. in Biotechnology &amp; Genetic Engineering</span>
+      <span class="entry-period">2025</span>
+      <span class="entry-sub">Gopalgonj Science and Technology University, Gopalgonj</span>
+      <span class="entry-detail">CGPA 3.57 / 4.00</span>
+    </div>
+
+    <div class="entry">
+      <span class="entry-title">Higher Secondary Certificate — Science</span>
+      <span class="entry-period">2019</span>
+      <span class="entry-sub">Barishal Government Women's College, Barishal</span>
+      <span class="entry-detail">GPA 4.83 / 5.00</span>
+    </div>
+
+    <div class="entry">
+      <span class="entry-title">Secondary School Certificate — Science</span>
+      <span class="entry-period">2017</span>
+      <span class="entry-sub">Jagadish Saraswati Girls School and College, Barishal</span>
+      <span class="entry-detail">GPA 5.00 / 5.00</span>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <span class="exp-role">Intern Researcher, <span class="exp-org">B Lab</span></span>
+        <span class="exp-period">Aug 2024 – Mar 2025</span>
+      </div>
+      <ul class="exp-list">
+        <li><strong>Assay development</strong> — conducted single-cell assays and molecular-level observations, standardizing experimental data preparation.</li>
+        <li><strong>Genomics</strong> — analyzed genetic variation across populations through comparative genomic sequence interpretation.</li>
+        <li><strong>Computation</strong> — built and deployed programming workflows for structured bioinformatics data pipelines.</li>
+        <li><strong>Data curation</strong> — processed large-scale biological datasets and raw sequencing data for structural model development.</li>
+        <li><strong>Documentation</strong> — authored laboratory records, experimental reports, and research notes.</li>
+        <li><strong>Academic writing</strong> — contributed to manuscript drafting, literature review, and hypothesis validation.</li>
+        <li><strong>Collaboration</strong> — worked alongside research mentors and institutional laboratory teams to advance project milestones.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Technical Skills &amp; Methodologies</h2>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h3>Instrumental Analysis</h3>
+        <p>HPLC, Gas Chromatography, UV-Vis Spectroscopy, dissolution testers, automated pH metrics.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Compliance &amp; Standards</h3>
+        <p>GMP, GLP, and formal SOP documentation.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Wet Lab Operations</h3>
+        <p>Microbiological testing, cell culturing, sterile handling, biological sample preparation and validation reporting.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Quality Frameworks</h3>
+        <p>Quality Control (QC) and Quality Assurance (QA) pipeline mechanics.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Certifications &amp; Training</h2>
+    </div>
+
+    <div class="cert-group">
+      <h3>Pharma Lesson Masterclass Series</h3>
+      <ul>
+        <li>Basic Pharmacy Course</li>
+        <li>Introduction to Pharmaceutical Quality Control</li>
+        <li>Introduction to Pharmaceutical Quality Assurance</li>
+        <li>Introduction to Pharmaceutical Product Development</li>
+      </ul>
+    </div>
+
+    <div class="cert-group">
+      <h3>Professional Training Awards</h3>
+      <ul>
+        <li class="cert-award">
+          <span class="cert-name">Certificate in Pharmaceutical &amp; Medical Microbiology Techniques</span>
+          <span class="cert-meta">Bioicon Academy &amp; Biolab Diagnostics Ltd., Kalabagan, Dhaka — Feb 07, 2026</span>
+        </li>
+        <li class="cert-award">
+          <span class="cert-name">Certificate in Breeding &amp; Biotechnological Approaches for Crop Variety Development</span>
+          <span class="cert-meta">Bashon Farm, Gazipur, Dhaka — Jan 14, 2025</span>
+        </li>
+        <li class="cert-award">
+          <span class="cert-name">Certificate in Tools of Bioinformatics with Complete Demonstration</span>
+          <span class="cert-meta">Biotechnology &amp; Genetic Engineering Discipline, Khulna University — Oct 24, 2024</span>
+        </li>
+        <li class="cert-award">
+          <span class="cert-name">Certificate in Computer Fundamentals and Office Applications</span>
+          <span class="cert-meta">EDGE Project, Bangladesh Computer Council – ICT Division — May 25, 2025</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="cert-group">
+      <h3>Languages</h3>
+      <div class="lang-row">
+        <div class="lang-item">
+          <div class="lang-name">English</div>
+          <div class="lang-level">Professional working proficiency</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Bengali</div>
+          <div class="lang-level">Native / bilingual proficiency</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Contact &amp; References</h2>
+    </div>
+
+    <div class="cta-card" style="margin-bottom: 28px;">
+      <p>Open to research assistant and laboratory positions in molecular biology, bioinformatics, and pharmaceutical sciences.</p>
+      <a class="cta-button" href="mailto:arpitasahatonu@gmail.com">Email Arpita</a>
+    </div>
+
+    <div class="contact-grid">
+      <div class="ref-card">
+        <p class="ref-name">Dr. Md Sarafat Ali</p>
+        <p class="ref-title">Associate Professor, Dept. of BGE — University of GSTU</p>
+        <dl>
+          <a href="mailto:sarafatbiotech@ynu.ac.kr">sarafatbiotech@ynu.ac.kr</a>
+          <span>+880 1714 775662</span>
+        </dl>
+      </div>
+      <div class="ref-card">
+        <p class="ref-name">Md. Sahabuddin</p>
+        <p class="ref-title">Assistant Professor, Dept. of BGE — University of GSTU</p>
+        <dl>
+          <a href="mailto:sahabuddin@gstu.edu.bd">sahabuddin@gstu.edu.bd</a>
+          <span>+880 1795 506400</span>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Arpita Saha — Dhanmondi, Dhaka
+</footer>
+
+</body>
+</html>
