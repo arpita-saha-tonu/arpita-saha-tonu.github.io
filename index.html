@@ -35,27 +35,27 @@
   }
 
   html[data-theme="dark"] {
-    --bg: #14181A;
-    --bg-raised: #1B2022;
-    --bg-sunken: #101314;
-    --ink: #E9EBE9;
-    --ink-soft: #AEB6B2;
-    --ink-faint: #757F7B;
-    --line: #2C3335;
-    --accent: #7FBBB0;
-    --accent-soft: #1F2C2A;
+    --bg: #14181A !important;
+    --bg-raised: #1B2022 !important;
+    --bg-sunken: #101314 !important;
+    --ink: #E9EBE9 !important;
+    --ink-soft: #AEB6B2 !important;
+    --ink-faint: #757F7B !important;
+    --line: #2C3335 !important;
+    --accent: #7FBBB0 !important;
+    --accent-soft: #1F2C2A !important;
   }
 
   html[data-theme="light"] {
-    --bg: #FAF9F6;
-    --bg-raised: #FFFFFF;
-    --bg-sunken: #F1EFE9;
-    --ink: #1D2321;
-    --ink-soft: #4B5451;
-    --ink-faint: #7C8683;
-    --line: #DDD9D0;
-    --accent: #2F5D5A;
-    --accent-soft: #E4EDEB;
+    --bg: #FAF9F6 !important;
+    --bg-raised: #FFFFFF !important;
+    --bg-sunken: #F1EFE9 !important;
+    --ink: #1D2321 !important;
+    --ink-soft: #4B5451 !important;
+    --ink-faint: #7C8683 !important;
+    --line: #DDD9D0 !important;
+    --accent: #2F5D5A !important;
+    --accent-soft: #E4EDEB !important;
   }
 
   * { box-sizing: border-box; }
@@ -853,52 +853,56 @@
 </footer>
 
 <script>
-  // Dark mode toggle
-  const themeToggle = document.getElementById('theme-toggle');
-  const themeIcon = document.getElementById('theme-icon');
-  const htmlElement = document.documentElement;
+  // Initialize dark mode immediately
+  (function() {
+    const htmlElement = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
 
-  // Check for saved theme preference or system preference
-  const savedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
-
-  if (isDark) {
-    htmlElement.setAttribute('data-theme', 'dark');
-    themeIcon.textContent = '☀️';
-  } else {
-    htmlElement.removeAttribute('data-theme');
-    themeIcon.textContent = '🌙';
-  }
-
-  themeToggle.addEventListener('click', () => {
-    const currentTheme = htmlElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-    if (newTheme === 'dark') {
+    if (isDark) {
       htmlElement.setAttribute('data-theme', 'dark');
-      themeIcon.textContent = '☀️';
-      localStorage.setItem('theme', 'dark');
     } else {
-      htmlElement.removeAttribute('data-theme');
-      themeIcon.textContent = '🌙';
-      localStorage.setItem('theme', 'light');
+      htmlElement.setAttribute('data-theme', 'light');
     }
-  });
+  })();
 
-  // Back to top button
-  const backToTopButton = document.getElementById('back-to-top');
+  // Dark mode toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlElement = document.documentElement;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backToTopButton.classList.add('visible');
-    } else {
-      backToTopButton.classList.remove('visible');
+    function updateThemeIcon() {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
     }
-  });
 
-  backToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateThemeIcon();
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      htmlElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon();
+    });
+
+    // Back to top button
+    const backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   });
 </script>
 
